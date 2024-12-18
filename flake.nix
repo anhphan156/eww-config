@@ -23,7 +23,7 @@
         cp -r $src/* $out
 
         mkdir -p $out/variables
-        echo '(defvar icon_base_path "${wallpapers}/icons")' > $out/variables/iconspath.yuck
+        echo '(defvar icon_base_path "${wallpapers.packages.${system}.default}/icons")' > $out/variables/iconspath.yuck
       '';
     };
   };
