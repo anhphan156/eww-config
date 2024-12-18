@@ -19,11 +19,11 @@
       src = ./.;
 
       installPhase = ''
-        mkdir -p $out
-        cp -r $src/* $out
+        mkdir -p $out/share/eww-config
+        cp -r $src/* $out/share/eww-config
 
-        mkdir -p $out/variables
-        echo '(defvar icon_base_path "${wallpapers.packages.${system}.default}/icons")' > $out/variables/iconspath.yuck
+        mkdir -p $out/share/eww-config/variables
+        echo '(defvar icon_base_path "${wallpapers.packages.${system}.default}/icons")' > $out/share/eww-config/variables/iconspath.yuck
       '';
     };
   };
