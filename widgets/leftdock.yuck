@@ -1,0 +1,68 @@
+(defwindow leftdock
+	:monitor 0
+	:exclusive false
+	:geometry 
+		(geometry 
+		  :x "0px"
+			:y "0px"
+			:width "10px"
+			:height "380px"
+			:anchor "left center"
+		)
+	:stacking "fg"
+	:reserve (struts :distance "20px" :side "left")
+	:windowtype "dock"
+	:wm-ignore false
+	(dock))
+
+(defvar revealdock "false")
+(defvar icon1 "false")
+(defvar icon2 "false")
+(defvar icon3 "false")
+(defvar icon4 "false")
+
+(defwidget dock []
+	(eventbox
+		:onhover "leftdockcheck"
+		:onhoverlost "eww update revealdock=false"
+		(box
+		:class "pr10"
+		(revealer
+			:transition "slideright"
+			:reveal revealdock
+			(box 
+				:orientation "v"
+				:class "dockbackground"
+				(icon
+					:icon_path "${icon_base_path}/firefox.png"
+					:icon_num icon1
+					:process_name "firefox")
+				(icon
+					:icon_path "${icon_base_path}/discord.png"
+					:icon_num icon2
+					:process_name "discord")
+				(icon
+					:icon_path "${icon_base_path}/filemanager.png"
+					:icon_num icon3
+					:process_name "nemo")
+				(icon
+					:icon_path "${icon_base_path}/terminal_emulator.png"
+					:icon_num icon4
+					:process_name "kitty"))))))
+
+(defwidget icon [icon_path icon_num process_name]
+	(eventbox
+		:class "zoom"
+		(box
+			:orientation "v"
+			:space-evenly "true"
+			(button
+				:onclick {icon_num ? "hyprctl dispatch focuswindow ${process_name}" : process_name}
+				(image 
+					:class "dockicons"
+					:path icon_path
+					:image-width 50))
+			(image
+				:image-height {icon_num ? 12 : 0}
+				:path "${icon_base_path}/ada.png"
+				:class "dockiconsindicator"))))

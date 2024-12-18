@@ -1,0 +1,74 @@
+(defwindow bar
+	:monitor 0
+	:exclusive true
+	:geometry 
+		(geometry 
+		  :x "0%"
+			:y "20px"
+			:width "97.5%"
+			:height "30px"
+			:anchor "top center"
+		)
+	:stacking "fg"
+	:reserve (struts :distance "20px" :side "top")
+	:windowtype "dock"
+	:wm-ignore false
+	(bar))
+
+(defwidget bar []
+	(centerbox
+		:orientation "horizontal"
+		(left)
+		(center)
+		(right)))
+
+(defwidget left []
+	(box
+		:class "r"
+		:halign "start"
+		:valign "center"
+		:orientation "h"
+		(systray)
+		))
+
+(defwidget center []
+	(box
+		:class "r"
+		:halign "center"
+		:valign "center"
+		:orientation "h"
+		time))
+
+(defvar power false)
+
+(defwidget right []
+	(box
+		:class "black-container red-text"
+		:halign "end"
+		:valign "center"
+		:orientation "h"
+		""
+		(eventbox
+			:onhover "eww update power=true"
+			:onhoverlost "eww update power=false"
+			(box
+				:class "pr10"
+				(revealer
+					:transition "slideleft"
+					:reveal power
+					(box
+						(button
+							:class "powermenu red-text"
+							:onclick "shutdown -h now"
+							"")
+						(button
+							:class "powermenu red-text"
+							:onclick "reboot"
+						"")))
+					"⏻"))))
+
+(defpoll time
+	:interval "60s"
+	:initial "Time"
+	:run-while true
+	`date "+%a %d %B %Y %H:%M"`)
