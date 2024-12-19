@@ -5,36 +5,6 @@
   font-family: "Anka/Coder";
 }
 
-.r {
-  font-family: "Anka/Coder";
-  font-size: 20px;
-  border-radius: 10px;
-  padding: 8px 10px 5px 10px;
-  background-color: #ee7999;
-  color: #333333;
-}
-
-.bar {
-  background-color: transparent;
-}
-
-.black-container {
-  border-radius: 10px;
-  background-color: #000000;
-  padding: 8px 10px 5px 0px;
-}
-
-.red-text {
-  font-size: 20px;
-  color: #ee9999;
-}
-
-.pr10{
-  padding-right: 10px;
-}
-
-.powermenu{
-  min-width: 37px;
-}
-
+@import 'styles/util.scss'
 @import 'styles/leftdock.scss'
+@import 'styles/topbar.scss'

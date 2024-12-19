@@ -31,7 +31,7 @@
       version = "1.0.0";
       src = ./.;
 
-      nativeBuildInputs = [pkgs.makeWrapper];
+      buildInputs = [pkgs.makeWrapper];
 
       installPhase = ''
         mkdir -p $out/share/eww-config
@@ -42,10 +42,6 @@
 
         mkdir -p $out/share/eww-config/variables
         echo '(defvar icon_base_path "${wallpapers.packages.${system}.default}/icons")' > $out/share/eww-config/variables/iconspath.yuck
-      '';
-
-      postFixup = ''
-
       '';
     };
   };
